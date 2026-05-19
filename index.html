@@ -144,6 +144,15 @@
   .cert-status { margin-left: auto; display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; flex-shrink: 0; }
   .cert-status.valid { color: #5DCAA5; }
   .cert-status.valid::before { content:''; display:inline-block; width:6px; height:6px; background:#5DCAA5; border-radius:50%; }
+  .download-card { background: var(--navy-mid); border: 1px solid rgba(201,168,76,0.15); padding: 1.25rem 1.75rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 1.25rem; transition: border-color 0.3s; }
+  .download-card:hover { border-color: rgba(201,168,76,0.4); }
+  .download-icon { width: 40px; height: 40px; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+  .download-body { flex: 1; }
+  .download-name { font-size: 0.95rem; font-weight: 600; color: var(--cream); margin-bottom: 0.2rem; }
+  .download-cat { font-size: 0.78rem; color: var(--text-muted); }
+  .download-btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.45rem 1rem; background: transparent; border: 1px solid rgba(201,168,76,0.4); color: var(--gold); font-family: 'Source Sans 3', sans-serif; font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; flex-shrink: 0; transition: all 0.25s; cursor: pointer; }
+  .download-btn:hover { background: rgba(201,168,76,0.12); border-color: var(--gold); color: var(--gold-light); }
+  .download-section-label { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin: 1.5rem 0 0.75rem; opacity: 0.7; }
 
   /* BLOG */
   .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
@@ -372,6 +381,7 @@
       <button class="tab-btn active" onclick="switchTab('titulos-tab',this)" data-i18n="tit.tab1"></button>
       <button class="tab-btn" onclick="switchTab('cert-tab',this)" data-i18n="tit.tab2"></button>
       <button class="tab-btn" onclick="switchTab('cursos-tab',this)" data-i18n="tit.tab3"></button>
+      <button class="tab-btn" onclick="switchTab('docs-tab',this)" data-i18n="tit.tab4"></button>
     </div>
     <div id="titulos-tab" class="tab-panel active">
       <div class="degree-card">
@@ -405,6 +415,48 @@
       <div class="cert-card"><div class="cert-number">04</div><div class="cert-body"><div class="cert-name">Dynamic Positioning Operator (DPO)</div><div class="cert-org">Nautical Institute — DP Certificate</div></div><div class="cert-status valid" data-i18n="tit.done"></div></div>
       <div class="cert-card"><div class="cert-number">05</div><div class="cert-body"><div class="cert-name">Bridge Resource Management (BRM)</div><div class="cert-org" data-i18n="tit.brm_desc"></div></div><div class="cert-status valid" data-i18n="tit.done"></div></div>
       <div class="cert-card"><div class="cert-number">06</div><div class="cert-body"><div class="cert-name">Tanker Safety — Oil, Chemical & Gas</div><div class="cert-org">STCW V/1-1 & V/1-2 — Endorsements</div></div><div class="cert-status valid" data-i18n="tit.done"></div></div>
+    </div>
+    <div id="docs-tab" class="tab-panel">
+      <div class="download-section-label" data-i18n="tit.docs_marine"></div>
+      <div class="download-card">
+        <div class="download-icon">⚓</div>
+        <div class="download-body"><div class="download-name" data-i18n="tit.doc_marino"></div><div class="download-cat">DIRECTEMAR — Armada de Chile</div></div>
+        <a class="download-btn" href="files/Titulos de Marino.pdf" download>⬇ PDF</a>
+      </div>
+      <div class="download-section-label" data-i18n="tit.docs_academic"></div>
+      <div class="download-card">
+        <div class="download-icon">🎓</div>
+        <div class="download-body"><div class="download-name">MBA — Master of Business Administration</div><div class="download-cat" data-i18n="tit.docs_degree"></div></div>
+        <a class="download-btn" href="files/MBA.pdf" download>⬇ PDF</a>
+      </div>
+      <div class="download-card">
+        <div class="download-icon">🎓</div>
+        <div class="download-body"><div class="download-name">MPhil — Master of Philosophy</div><div class="download-cat" data-i18n="tit.docs_degree"></div></div>
+        <a class="download-btn" href="files/MPhil_Christian Estay.pdf" download>⬇ PDF</a>
+      </div>
+      <div class="download-card">
+        <div class="download-icon">🎓</div>
+        <div class="download-body"><div class="download-name">DBA — Doctorate in Business Administration</div><div class="download-cat" data-i18n="tit.docs_degree"></div></div>
+        <a class="download-btn" href="files/Doctorate in Business Administration (DBA)- Christian Ariel Estay Ojeda.pdf" download>⬇ PDF</a>
+      </div>
+      <div class="download-section-label" data-i18n="tit.docs_surveyor"></div>
+      <div class="download-card">
+        <div class="download-icon">📋</div>
+        <div class="download-body"><div class="download-name">Statutory Survey Diploma</div><div class="download-cat" data-i18n="tit.docs_cert"></div></div>
+        <a class="download-btn" href="files/Statutory Survey Diploma.pdf" download>⬇ PDF</a>
+      </div>
+      <div class="download-section-label" data-i18n="tit.docs_mit"></div>
+      <div class="download-card">
+        <div class="download-icon">🏛</div>
+        <div class="download-body"><div class="download-name">Digital Transformation Professional — MIT</div><div class="download-cat">Massachusetts Institute of Technology</div></div>
+        <a class="download-btn" href="files/Digital Transformation Professional.pdf" download>⬇ PDF</a>
+      </div>
+      <div class="download-section-label" data-i18n="tit.docs_cv"></div>
+      <div class="download-card">
+        <div class="download-icon">📄</div>
+        <div class="download-body"><div class="download-name">Christian Estay — Curriculum Vitae</div><div class="download-cat" data-i18n="tit.docs_cv_desc"></div></div>
+        <a class="download-btn" href="files/christian_estay_resume.pdf" download>⬇ PDF</a>
+      </div>
     </div>
   </div>
 </section>
@@ -493,13 +545,14 @@ const i18n = {
     "cv.desc4":"Formación académica y primeras experiencias embarcado. Escalafón desde guardiamarina hasta oficial certificado, navegando en rutas del Pacífico Sur y Atlántico.",
     "cv.tag4b":"Pacífico Sur","cv.tag4c":"Atlántico",
     "tit.eyebrow":"Formación & Acreditaciones","tit.title":"Títulos & Certificaciones",
-    "tit.tab1":"Títulos Académicos","tit.tab2":"Certificaciones STCW","tit.tab3":"Cursos & Endorsements",
+    "tit.tab1":"Títulos Académicos","tit.tab2":"Certificaciones STCW","tit.tab3":"Cursos & Endorsements","tit.tab4":"Documentos",
     "tit.d1title":"Licenciatura en Náutica — Oficial de Marina Mercante",
     "tit.d1year":"Titulado 2012","tit.d2title":"Capitán de Naves de Alto Bordo",
     "tit.d2year":"Habilitado 2020","tit.d3year":"Especialización 2017",
     "tit.badge_title":"Título","tit.badge_hab":"Habilitación","tit.badge_spec":"Especialidad",
     "tit.valid":"Vigente","tit.done":"Completado",
     "tit.ism_desc":"Gestión de seguridad y SMS a bordo","tit.brm_desc":"Liderazgo y trabajo en equipo en puente de mando",
+    "tit.docs_marine":"Títulos de Marina","tit.doc_marino":"Título de Marino — Capitán de Alta Mar","tit.docs_academic":"Grados Académicos","tit.docs_degree":"Grado Académico","tit.docs_surveyor":"Surveyor","tit.docs_cert":"Certificado Profesional","tit.docs_mit":"MIT — Cursos Especializados","tit.docs_cv":"Curriculum Vitae","tit.docs_cv_desc":"Versión completa actualizada",
     "blog.eyebrow":"Reflexiones del mar",
     "blog.cat1":"Navegación","blog.title1":"El arte de la navegación astronómica en la era digital","blog.exc1":"Por qué todo capitán debería dominar las estrellas, incluso con GPS a bordo.","blog.meta1":"Mayo 2025 · 5 min lectura",
     "blog.cat2":"Seguridad Marítima","blog.title2":"Gestión de riesgos en operaciones offshore","blog.exc2":"Reflexiones sobre seguridad, protocolos y la cultura de prevención a bordo.","blog.meta2":"Marzo 2025 · 7 min lectura",
@@ -542,13 +595,14 @@ const i18n = {
     "cv.desc4":"Academic training and first seafaring experience. Rose through the ranks from cadet to certified officer, sailing South Pacific and Atlantic routes.",
     "cv.tag4b":"South Pacific","cv.tag4c":"Atlantic",
     "tit.eyebrow":"Education & Accreditations","tit.title":"Degrees & Certifications",
-    "tit.tab1":"Academic Degrees","tit.tab2":"STCW Certifications","tit.tab3":"Courses & Endorsements",
+    "tit.tab1":"Academic Degrees","tit.tab2":"STCW Certifications","tit.tab3":"Courses & Endorsements","tit.tab4":"Documents",
     "tit.d1title":"Bachelor of Nautical Science — Merchant Marine Officer",
     "tit.d1year":"Graduated 2012","tit.d2title":"Master Mariner — Deep-Sea Captain",
     "tit.d2year":"Licensed 2020","tit.d3year":"Specialization 2017",
     "tit.badge_title":"Degree","tit.badge_hab":"License","tit.badge_spec":"Specialty",
     "tit.valid":"Valid","tit.done":"Completed",
     "tit.ism_desc":"Safety management and SMS onboard","tit.brm_desc":"Leadership and teamwork on the bridge",
+    "tit.docs_marine":"Marine Titles","tit.doc_marino":"Merchant Marine Title — Master Mariner","tit.docs_academic":"Academic Degrees","tit.docs_degree":"Academic Degree","tit.docs_surveyor":"Surveyor","tit.docs_cert":"Professional Certificate","tit.docs_mit":"MIT — Specialized Courses","tit.docs_cv":"Curriculum Vitae","tit.docs_cv_desc":"Full updated version",
     "blog.eyebrow":"Reflections from the sea",
     "blog.cat1":"Navigation","blog.title1":"The art of celestial navigation in the digital age","blog.exc1":"Why every captain should master the stars, even with GPS on board.","blog.meta1":"May 2025 · 5 min read",
     "blog.cat2":"Maritime Safety","blog.title2":"Risk management in offshore operations","blog.exc2":"Reflections on safety, protocols and the culture of prevention on board.","blog.meta2":"March 2025 · 7 min read",
@@ -591,13 +645,14 @@ const i18n = {
     "cv.desc4":"Formação acadêmica e primeiras experiências embarcado. Carreira desde guarda-marinha até oficial certificado, navegando em rotas do Pacífico Sul e Atlântico.",
     "cv.tag4b":"Pacífico Sul","cv.tag4c":"Atlântico",
     "tit.eyebrow":"Formação & Acreditações","tit.title":"Títulos & Certificações",
-    "tit.tab1":"Títulos Acadêmicos","tit.tab2":"Certificações STCW","tit.tab3":"Cursos & Endorsements",
+    "tit.tab1":"Títulos Acadêmicos","tit.tab2":"Certificações STCW","tit.tab3":"Cursos & Endorsements","tit.tab4":"Documentos",
     "tit.d1title":"Licenciatura em Náutica — Oficial da Marinha Mercante",
     "tit.d1year":"Formado em 2012","tit.d2title":"Capitão de Navios de Alto Bordo",
     "tit.d2year":"Habilitado em 2020","tit.d3year":"Especialização 2017",
     "tit.badge_title":"Título","tit.badge_hab":"Habilitação","tit.badge_spec":"Especialidade",
     "tit.valid":"Válido","tit.done":"Concluído",
     "tit.ism_desc":"Gestão de segurança e SMS a bordo","tit.brm_desc":"Liderança e trabalho em equipe na ponte de comando",
+    "tit.docs_marine":"Títulos de Marinha","tit.doc_marino":"Título de Marinheiro — Capitão de Longo Curso","tit.docs_academic":"Graus Acadêmicos","tit.docs_degree":"Grau Acadêmico","tit.docs_surveyor":"Surveyor","tit.docs_cert":"Certificado Profissional","tit.docs_mit":"MIT — Cursos Especializados","tit.docs_cv":"Curriculum Vitae","tit.docs_cv_desc":"Versão completa atualizada",
     "blog.eyebrow":"Reflexões do mar",
     "blog.cat1":"Navegação","blog.title1":"A arte da navegação astronômica na era digital","blog.exc1":"Por que todo capitão deveria dominar as estrelas, mesmo com GPS a bordo.","blog.meta1":"Maio 2025 · 5 min leitura",
     "blog.cat2":"Segurança Marítima","blog.title2":"Gestão de riscos em operações offshore","blog.exc2":"Reflexões sobre segurança, protocolos e a cultura de prevenção a bordo.","blog.meta2":"Março 2025 · 7 min leitura",
