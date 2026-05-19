@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christian Estay Ojeda — Capitán de Naves · Marine Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0a1628; --navy-mid: #122040; --navy-light: #1a3160;
+    --gold: #c9a84c; --gold-light: #e8c97a;
+    --cream: #f5f0e8; --cream-dark: #e8e0d0;
+    --text-muted: #8a9bb5;
+  }
+  body { font-family: 'Source Sans 3', sans-serif; background: var(--navy); color: var(--cream); min-height: 100vh; overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2.5rem; background: rgba(10,22,40,0.97); border-bottom: 1px solid rgba(201,168,76,0.3); flex-wrap: wrap; gap: 0.5rem; }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--gold); letter-spacing: 2px; }
+  .nav-logo span { color: var(--cream); font-weight: 400; }
+  .nav-center { display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; }
+  .nav-center a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.3s; cursor: pointer; }
+  .nav-center a:hover, .nav-center a.active { color: var(--gold); }
+  .lang-switcher { display: flex; gap: 0.25rem; }
+  .lang-btn { padding: 0.3rem 0.6rem; background: transparent; border: 1px solid rgba(201,168,76,0.25); color: var(--text-muted); font-family: 'Source Sans 3', sans-serif; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.25s; }
+  .lang-btn:hover { border-color: var(--gold); color: var(--cream); }
+  .lang-btn.active { background: rgba(201,168,76,0.15); border-color: var(--gold); color: var(--gold); }
+
+  .section { display: none; padding-top: 80px; min-height: 100vh; }
+  .section.active { display: block; }
+  .section-inner { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; }
+  .section-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 3rem; }
+  .section-number { font-family: 'Playfair Display', serif; font-size: 4rem; color: rgba(201,168,76,0.15); font-weight: 700; line-height: 1; }
+  .section-eyebrow { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--cream); }
+
+  /* HOME */
+  #home { display: none; position: relative; overflow: hidden; background: linear-gradient(180deg, #0a1628 0%, #0d1f3c 60%, #071020 100%); }
+  #home.active { display: block; padding-top: 0; }
+  .stars { position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden; z-index: 1; }
+  .star { position: absolute; width: 2px; height: 2px; background: white; border-radius: 50%; animation: twinkle 3s infinite; }
+  @keyframes twinkle { 0%,100%{opacity:0.3}50%{opacity:1} }
+  .hero-content { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center; padding: 2rem; position: relative; z-index: 2; }
+  .compass-rose { width: 90px; height: 90px; margin-bottom: 1.5rem; animation: rotate-slow 30s linear infinite; opacity: 0.9; }
+  @keyframes rotate-slow { from{transform:rotate(0deg)}to{transform:rotate(360deg)} }
+  .hero-eyebrow { font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem,7vw,5rem); font-weight: 700; line-height: 1.1; color: var(--cream); margin-bottom: 0.5rem; }
+  .hero-subtitle { font-size: 1rem; font-weight: 300; color: var(--gold-light); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1.5rem; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 0 auto 1.5rem; }
+  .hero-tagline { font-size: 0.95rem; color: var(--text-muted); max-width: 500px; line-height: 1.7; margin-bottom: 2.5rem; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .btn-primary { padding: 0.7rem 1.8rem; background: var(--gold); color: var(--navy); font-family: 'Source Sans 3',sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; border: none; cursor: pointer; transition: all 0.3s; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline { padding: 0.7rem 1.8rem; background: transparent; color: var(--cream); font-family: 'Source Sans 3',sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.3); cursor: pointer; transition: all 0.3s; }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-ocean { position: absolute; bottom: 0; left: 0; right: 0; height: 220px; overflow: hidden; }
+  .wave1 { position: absolute; bottom: 0; height: 100px; width: 200%; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100'%3E%3Cpath fill='%230a1f3c' d='M0,50 C240,100 480,0 720,50 C960,100 1200,0 1440,50 L1440,100 L0,100 Z'/%3E%3C/svg%3E") repeat-x; background-size: 720px 100px; animation: wave-anim 8s linear infinite; opacity: 0.8; }
+  .wave2 { position: absolute; bottom: 20px; height: 80px; width: 200%; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80'%3E%3Cpath fill='%23122040' d='M0,40 C360,80 720,0 1080,40 C1260,60 1350,30 1440,40 L1440,80 L0,80 Z'/%3E%3C/svg%3E") repeat-x; background-size: 720px 80px; animation: wave-anim 12s linear infinite reverse; opacity: 0.5; }
+  @keyframes wave-anim { 0%{transform:translateX(0)}100%{transform:translateX(-50%)} }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .about-text p { color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; font-size: 1rem; }
+  .about-text p strong { color: var(--gold); font-weight: 600; }
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .stat-card { background: var(--navy-mid); border: 1px solid rgba(201,168,76,0.2); padding: 1.5rem; text-align: center; }
+  .stat-number { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); font-weight: 700; line-height: 1; }
+  .stat-label { font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-top: 0.5rem; }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .service-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 2rem 1.75rem;
+    transition: transform 0.3s, border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .service-card:hover { transform: translateY(-5px); border-color: rgba(201,168,76,0.4); }
+  .service-card:hover::before { opacity: 1; }
+  .service-icon-wrap {
+    width: 60px; height: 60px;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.25rem;
+  }
+  .service-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+  }
+  .service-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.75; }
+  .service-divider { width: 30px; height: 1px; background: var(--gold); margin: 1rem 0; opacity: 0.5; }
+  .service-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+  .service-tag { font-size: 0.7rem; color: var(--gold-light); border: 1px solid rgba(201,168,76,0.2); padding: 0.15rem 0.6rem; letter-spacing: 0.5px; }
+
+  /* CV */
+  .cv-timeline { position: relative; padding-left: 2rem; }
+  .cv-timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:1px; background: linear-gradient(to bottom, var(--gold), transparent); }
+  .cv-entry { position: relative; margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .cv-entry:last-child { border-bottom: none; }
+  .cv-dot { position:absolute; left:-2.4rem; top:0.4rem; width:12px; height:12px; background: var(--gold); border-radius:50%; border:2px solid var(--navy); }
+  .cv-period { font-size:0.75rem; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:0.4rem; }
+  .cv-role { font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--cream); margin-bottom:0.25rem; }
+  .cv-company { font-size:0.9rem; color:var(--text-muted); margin-bottom:0.75rem; }
+  .cv-desc { font-size:0.9rem; color:var(--text-muted); line-height:1.7; }
+  .cv-tags { display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem; }
+  .cv-tag { padding:0.2rem 0.75rem; border:1px solid rgba(201,168,76,0.3); font-size:0.75rem; color:var(--gold-light); letter-spacing:1px; }
+
+  /* TÍTULOS */
+  .tabs-nav { display: flex; border-bottom: 1px solid rgba(201,168,76,0.2); margin-bottom: 2rem; flex-wrap: wrap; }
+  .tab-btn { padding: 0.75rem 1.5rem; background: transparent; border: none; border-bottom: 2px solid transparent; color: var(--text-muted); font-family: 'Source Sans 3', sans-serif; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; margin-bottom: -1px; }
+  .tab-btn:hover { color: var(--cream); }
+  .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  .degree-card { background: var(--navy-mid); border: 1px solid rgba(201,168,76,0.15); padding: 1.5rem 1.75rem; margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1.5rem; transition: border-color 0.3s; }
+  .degree-card:hover { border-color: rgba(201,168,76,0.4); }
+  .degree-icon { width: 48px; height: 48px; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+  .degree-body { flex: 1; }
+  .degree-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--cream); margin-bottom: 0.3rem; }
+  .degree-institution { font-size: 0.85rem; color: var(--gold-light); margin-bottom: 0.25rem; }
+  .degree-year { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); }
+  .degree-badge { margin-left: auto; padding: 0.25rem 0.75rem; border: 1px solid rgba(201,168,76,0.3); font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); flex-shrink: 0; align-self: flex-start; }
+  .cert-card { background: var(--navy-mid); border: 1px solid rgba(201,168,76,0.15); padding: 1.25rem 1.75rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 1.25rem; transition: border-color 0.3s; }
+  .cert-card:hover { border-color: rgba(201,168,76,0.4); }
+  .cert-number { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: rgba(201,168,76,0.2); font-weight: 700; width: 32px; text-align: center; flex-shrink: 0; }
+  .cert-body { flex: 1; }
+  .cert-name { font-size: 0.95rem; font-weight: 600; color: var(--cream); margin-bottom: 0.2rem; }
+  .cert-org { font-size: 0.8rem; color: var(--text-muted); }
+  .cert-status { margin-left: auto; display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; flex-shrink: 0; }
+  .cert-status.valid { color: #5DCAA5; }
+  .cert-status.valid::before { content:''; display:inline-block; width:6px; height:6px; background:#5DCAA5; border-radius:50%; }
+
+  /* BLOG */
+  .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .blog-card { background: var(--navy-mid); border: 1px solid rgba(201,168,76,0.15); overflow: hidden; transition: transform 0.3s, border-color 0.3s; cursor: pointer; }
+  .blog-card:hover { transform: translateY(-4px); border-color: rgba(201,168,76,0.4); }
+  .blog-card-image { height: 140px; display: flex; align-items: center; justify-content: center; font-size: 3rem; background: linear-gradient(135deg, var(--navy-light), var(--navy-mid)); }
+  .blog-card-body { padding: 1.5rem; }
+  .blog-category { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .blog-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--cream); line-height: 1.4; margin-bottom: 0.75rem; }
+  .blog-excerpt { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem; }
+  .blog-meta { font-size: 0.75rem; color: rgba(138,155,181,0.6); }
+
+  /* LINKS */
+  .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .link-card { display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; background: var(--navy-mid); border: 1px solid rgba(201,168,76,0.15); text-decoration: none; transition: all 0.3s; cursor: pointer; }
+  .link-card:hover { border-color: var(--gold); transform: translateX(4px); }
+  .link-icon { width: 44px; height: 44px; background: rgba(201,168,76,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+  .link-name { font-size: 0.9rem; font-weight: 600; color: var(--cream); margin-bottom: 0.2rem; }
+  .link-desc { font-size: 0.8rem; color: var(--text-muted); }
+  .link-arrow { margin-left: auto; color: var(--gold); opacity: 0.5; font-size: 1.2rem; }
+  .link-section-title { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(201,168,76,0.2); }
+
+  footer { background: rgba(0,0,0,0.4); border-top: 1px solid rgba(201,168,76,0.1); text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--text-muted); letter-spacing: 1px; }
+  footer span { color: var(--gold); }
+
+  @media (max-width: 700px) {
+    nav { padding: 0.75rem 1rem; }
+    .nav-center { gap: 0.6rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .tabs-nav { flex-wrap: wrap; }
+    .tab-btn { font-size: 0.7rem; padding: 0.6rem 0.8rem; }
+    .degree-card { flex-wrap: wrap; }
+    .degree-badge { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">C<span>HRISTIAN</span> E.</div>
+  <ul class="nav-center" id="nav-links-list"></ul>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('pt')">PT</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="section active">
+  <div class="stars" id="stars"></div>
+  <div class="hero-content">
+    <svg class="compass-rose" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+      <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(201,168,76,0.15)" stroke-width="0.5"/>
+      <polygon points="50,5 54,48 50,42 46,48" fill="#c9a84c"/>
+      <polygon points="50,95 54,52 50,58 46,52" fill="rgba(201,168,76,0.4)"/>
+      <polygon points="5,50 48,46 42,50 48,54" fill="rgba(201,168,76,0.4)"/>
+      <polygon points="95,50 52,46 58,50 52,54" fill="rgba(201,168,76,0.4)"/>
+      <text x="50" y="18" text-anchor="middle" fill="#c9a84c" font-size="7" font-family="serif" font-weight="bold">N</text>
+      <text x="50" y="90" text-anchor="middle" fill="rgba(201,168,76,0.5)" font-size="6" font-family="serif">S</text>
+      <text x="88" y="53" text-anchor="middle" fill="rgba(201,168,76,0.5)" font-size="6" font-family="serif">E</text>
+      <text x="12" y="53" text-anchor="middle" fill="rgba(201,168,76,0.5)" font-size="6" font-family="serif">W</text>
+      <circle cx="50" cy="50" r="5" fill="#c9a84c"/>
+      <circle cx="50" cy="50" r="2" fill="#0a1628"/>
+    </svg>
+    <div class="hero-eyebrow" data-i18n="hero.eyebrow"></div>
+    <h1 class="hero-name">Christian<br>Estay Ojeda</h1>
+    <div class="hero-subtitle" data-i18n="hero.subtitle"></div>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline" data-i18n="hero.tagline"></p>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="showSection('servicios')" data-i18n="hero.cta_svc"></button>
+      <button class="btn-outline" onclick="showSection('cv')" data-i18n="hero.cta1"></button>
+    </div>
+  </div>
+  <div class="hero-ocean"><div class="wave1"></div><div class="wave2"></div></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-number">01</div>
+      <div><div class="section-eyebrow" data-i18n="about.eyebrow"></div><h2 class="section-title" data-i18n="about.title"></h2></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p data-i18n="about.p1"></p><p data-i18n="about.p2"></p><p data-i18n="about.p3"></p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-number">15+</div><div class="stat-label" data-i18n="about.stat1"></div></div>
+        <div class="stat-card"><div class="stat-number">40+</div><div class="stat-label" data-i18n="about.stat2"></div></div>
+        <div class="stat-card"><div class="stat-number">100%</div><div class="stat-label" data-i18n="about.stat3"></div></div>
+        <div class="stat-card"><div class="stat-number">∞</div><div class="stat-label" data-i18n="about.stat4"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-number">02</div>
+      <div><div class="section-eyebrow" data-i18n="svc.eyebrow"></div><h2 class="section-title" data-i18n="svc.title"></h2></div>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon-wrap">🧭</div>
+        <div class="service-title" data-i18n="svc.s1title"></div>
+        <div class="service-divider"></div>
+        <div class="service-desc" data-i18n="svc.s1desc"></div>
+        <div class="service-tags">
+          <span class="service-tag">IMO</span>
+          <span class="service-tag">ISM</span>
+          <span class="service-tag" data-i18n="svc.tag_strategy"></span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap">🔍</div>
+        <div class="service-title" data-i18n="svc.s2title"></div>
+        <div class="service-divider"></div>
+        <div class="service-desc" data-i18n="svc.s2desc"></div>
+        <div class="service-tags">
+          <span class="service-tag">SOLAS</span>
+          <span class="service-tag">MARPOL</span>
+          <span class="service-tag" data-i18n="svc.tag_psc"></span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap">👥</div>
+        <div class="service-title" data-i18n="svc.s3title"></div>
+        <div class="service-divider"></div>
+        <div class="service-desc" data-i18n="svc.s3desc"></div>
+        <div class="service-tags">
+          <span class="service-tag">STCW</span>
+          <span class="service-tag" data-i18n="svc.tag_mlc"></span>
+          <span class="service-tag" data-i18n="svc.tag_crewing"></span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap">⚙️</div>
+        <div class="service-title" data-i18n="svc.s4title"></div>
+        <div class="service-divider"></div>
+        <div class="service-desc" data-i18n="svc.s4desc"></div>
+        <div class="service-tags">
+          <span class="service-tag">DP</span>
+          <span class="service-tag">FPSO</span>
+          <span class="service-tag" data-i18n="svc.tag_offshore"></span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap">🎓</div>
+        <div class="service-title" data-i18n="svc.s5title"></div>
+        <div class="service-divider"></div>
+        <div class="service-desc" data-i18n="svc.s5desc"></div>
+        <div class="service-tags">
+          <span class="service-tag">BRM</span>
+          <span class="service-tag" data-i18n="svc.tag_safety"></span>
+          <span class="service-tag" data-i18n="svc.tag_leadership"></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CV -->
+<section id="cv" class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-number">03</div>
+      <div><div class="section-eyebrow" data-i18n="cv.eyebrow"></div><h2 class="section-title" data-i18n="cv.title"></h2></div>
+    </div>
+    <div class="cv-timeline">
+      <div class="cv-entry">
+        <div class="cv-dot"></div>
+        <div class="cv-period">2020 — <span data-i18n="cv.present"></span></div>
+        <div class="cv-role" data-i18n="cv.role1"></div>
+        <div class="cv-company" data-i18n="cv.company1"></div>
+        <div class="cv-desc" data-i18n="cv.desc1"></div>
+        <div class="cv-tags"><span class="cv-tag" data-i18n="cv.tag1a"></span><span class="cv-tag" data-i18n="cv.tag1b"></span><span class="cv-tag">COLREGS</span></div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-dot"></div>
+        <div class="cv-period">2016 — 2020</div>
+        <div class="cv-role">Marine Specialist</div>
+        <div class="cv-company" data-i18n="cv.company2"></div>
+        <div class="cv-desc" data-i18n="cv.desc2"></div>
+        <div class="cv-tags"><span class="cv-tag">Offshore</span><span class="cv-tag" data-i18n="cv.tag2b"></span><span class="cv-tag">ISM Code</span></div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-dot"></div>
+        <div class="cv-period">2012 — 2016</div>
+        <div class="cv-role" data-i18n="cv.role3"></div>
+        <div class="cv-company" data-i18n="cv.company3"></div>
+        <div class="cv-desc" data-i18n="cv.desc3"></div>
+        <div class="cv-tags"><span class="cv-tag">ECDIS</span><span class="cv-tag">GMDSS</span><span class="cv-tag" data-i18n="cv.tag3c"></span></div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-dot"></div>
+        <div class="cv-period">2006 — 2012</div>
+        <div class="cv-role" data-i18n="cv.role4"></div>
+        <div class="cv-company" data-i18n="cv.company4"></div>
+        <div class="cv-desc" data-i18n="cv.desc4"></div>
+        <div class="cv-tags"><span class="cv-tag">STCW</span><span class="cv-tag" data-i18n="cv.tag4b"></span><span class="cv-tag" data-i18n="cv.tag4c"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TÍTULOS -->
+<section id="titulos" class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-number">04</div>
+      <div><div class="section-eyebrow" data-i18n="tit.eyebrow"></div><h2 class="section-title" data-i18n="tit.title"></h2></div>
+    </div>
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('titulos-tab',this)" data-i18n="tit.tab1"></button>
+      <button class="tab-btn" onclick="switchTab('cert-tab',this)" data-i18n="tit.tab2"></button>
+      <button class="tab-btn" onclick="switchTab('cursos-tab',this)" data-i18n="tit.tab3"></button>
+    </div>
+    <div id="titulos-tab" class="tab-panel active">
+      <div class="degree-card">
+        <div class="degree-icon">🎓</div>
+        <div class="degree-body"><div class="degree-title" data-i18n="tit.d1title"></div><div class="degree-institution">Academia Politécnica Naval / Escuela de Ciencias del Mar</div><div class="degree-year" data-i18n="tit.d1year"></div></div>
+        <div class="degree-badge" data-i18n="tit.badge_title"></div>
+      </div>
+      <div class="degree-card">
+        <div class="degree-icon">⚓</div>
+        <div class="degree-body"><div class="degree-title" data-i18n="tit.d2title"></div><div class="degree-institution">DIRECTEMAR — Dirección General del Territorio Marítimo</div><div class="degree-year" data-i18n="tit.d2year"></div></div>
+        <div class="degree-badge" data-i18n="tit.badge_hab"></div>
+      </div>
+      <div class="degree-card">
+        <div class="degree-icon">🌊</div>
+        <div class="degree-body"><div class="degree-title">Marine Specialist — Offshore Operations</div><div class="degree-institution">International Maritime Organization (IMO)</div><div class="degree-year" data-i18n="tit.d3year"></div></div>
+        <div class="degree-badge" data-i18n="tit.badge_spec"></div>
+      </div>
+    </div>
+    <div id="cert-tab" class="tab-panel">
+      <div class="cert-card"><div class="cert-number">01</div><div class="cert-body"><div class="cert-name">STCW II/2 — Master on Ships of 3000 GT or More</div><div class="cert-org">International Maritime Organization (IMO)</div></div><div class="cert-status valid" data-i18n="tit.valid"></div></div>
+      <div class="cert-card"><div class="cert-number">02</div><div class="cert-body"><div class="cert-name">STCW VI/1 — Basic Safety Training (BST)</div><div class="cert-org">IMO — Personal Survival, Fire Prevention, First Aid, PSSR</div></div><div class="cert-status valid" data-i18n="tit.valid"></div></div>
+      <div class="cert-card"><div class="cert-number">03</div><div class="cert-body"><div class="cert-name">STCW VI/2 — Proficiency in Survival Craft and Rescue Boats</div><div class="cert-org">International Maritime Organization (IMO)</div></div><div class="cert-status valid" data-i18n="tit.valid"></div></div>
+      <div class="cert-card"><div class="cert-number">04</div><div class="cert-body"><div class="cert-name">STCW VI/3 — Advanced Fire Fighting</div><div class="cert-org">International Maritime Organization (IMO)</div></div><div class="cert-status valid" data-i18n="tit.valid"></div></div>
+      <div class="cert-card"><div class="cert-number">05</div><div class="cert-body"><div class="cert-name">STCW VI/4 — Medical First Aid & Medical Care</div><div class="cert-org">International Maritime Organization (IMO)</div></div><div class="cert-status valid" data-i18n="tit.valid"></div></div>
+      <div class="cert-card"><div class="cert-number">06</div><div class="cert-body"><div class="cert-name">GMDSS — Global Maritime Distress and Safety System</div><div class="cert-org">ITU / IMO — General Operator Certificate</div></div><div class="cert-status valid" data-i18n="tit.valid"></div></div>
+    </div>
+    <div id="cursos-tab" class="tab-panel">
+      <div class="cert-card"><div class="cert-number">01</div><div class="cert-body"><div class="cert-name">ISM Code — International Safety Management</div><div class="cert-org" data-i18n="tit.ism_desc"></div></div><div class="cert-status valid" data-i18n="tit.done"></div></div>
+      <div class="cert-card"><div class="cert-number">02</div><div class="cert-body"><div class="cert-name">ISPS Code — International Ship & Port Facility Security</div><div class="cert-org">Ship Security Officer (SSO)</div></div><div class="cert-status valid" data-i18n="tit.done"></div></div>
+      <div class="cert-card"><div class="cert-number">03</div><div class="cert-body"><div class="cert-name">ECDIS — Electronic Chart Display and Information System</div><div class="cert-org">Type Specific — JRC / Furuno</div></div><div class="cert-status valid" data-i18n="tit.done"></div></div>
+      <div class="cert-card"><div class="cert-number">04</div><div class="cert-body"><div class="cert-name">Dynamic Positioning Operator (DPO)</div><div class="cert-org">Nautical Institute — DP Certificate</div></div><div class="cert-status valid" data-i18n="tit.done"></div></div>
+      <div class="cert-card"><div class="cert-number">05</div><div class="cert-body"><div class="cert-name">Bridge Resource Management (BRM)</div><div class="cert-org" data-i18n="tit.brm_desc"></div></div><div class="cert-status valid" data-i18n="tit.done"></div></div>
+      <div class="cert-card"><div class="cert-number">06</div><div class="cert-body"><div class="cert-name">Tanker Safety — Oil, Chemical & Gas</div><div class="cert-org">STCW V/1-1 & V/1-2 — Endorsements</div></div><div class="cert-status valid" data-i18n="tit.done"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog" class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-number">05</div>
+      <div><div class="section-eyebrow" data-i18n="blog.eyebrow"></div><h2 class="section-title">Blog</h2></div>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card"><div class="blog-card-image">⚓</div><div class="blog-card-body"><div class="blog-category" data-i18n="blog.cat1"></div><div class="blog-title" data-i18n="blog.title1"></div><div class="blog-excerpt" data-i18n="blog.exc1"></div><div class="blog-meta" data-i18n="blog.meta1"></div></div></div>
+      <div class="blog-card"><div class="blog-card-image">🌊</div><div class="blog-card-body"><div class="blog-category" data-i18n="blog.cat2"></div><div class="blog-title" data-i18n="blog.title2"></div><div class="blog-excerpt" data-i18n="blog.exc2"></div><div class="blog-meta" data-i18n="blog.meta2"></div></div></div>
+      <div class="blog-card"><div class="blog-card-image">🧭</div><div class="blog-card-body"><div class="blog-category" data-i18n="blog.cat3"></div><div class="blog-title" data-i18n="blog.title3"></div><div class="blog-excerpt" data-i18n="blog.exc3"></div><div class="blog-meta" data-i18n="blog.meta3"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LINKS -->
+<section id="links" class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-number">06</div>
+      <div><div class="section-eyebrow" data-i18n="links.eyebrow"></div><h2 class="section-title" data-i18n="links.title"></h2></div>
+    </div>
+    <div style="margin-bottom:2rem;">
+      <div class="link-section-title" data-i18n="links.sec1"></div>
+      <div class="links-grid">
+        <div class="link-card"><div class="link-icon">💼</div><div><div class="link-name">LinkedIn</div><div class="link-desc" data-i18n="links.linkedin_desc"></div></div><div class="link-arrow">→</div></div>
+        <div class="link-card"><div class="link-icon">⚓</div><div><div class="link-name">MarineTraffic</div><div class="link-desc" data-i18n="links.marine_desc"></div></div><div class="link-arrow">→</div></div>
+      </div>
+    </div>
+    <div style="margin-bottom:2rem;">
+      <div class="link-section-title" data-i18n="links.sec2"></div>
+      <div class="links-grid">
+        <div class="link-card"><div class="link-icon">📜</div><div><div class="link-name" data-i18n="links.stcw_name"></div><div class="link-desc" data-i18n="links.stcw_desc"></div></div><div class="link-arrow">→</div></div>
+        <div class="link-card"><div class="link-icon">🏛️</div><div><div class="link-name">IMO Profile</div><div class="link-desc" data-i18n="links.imo_desc"></div></div><div class="link-arrow">→</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="link-section-title" data-i18n="links.sec3"></div>
+      <div class="links-grid">
+        <div class="link-card"><div class="link-icon">✉️</div><div><div class="link-name" data-i18n="links.email_name"></div><div class="link-desc">christian@estayojeda.com</div></div><div class="link-arrow">→</div></div>
+        <div class="link-card"><div class="link-icon">📍</div><div><div class="link-name" data-i18n="links.loc_name"></div><div class="link-desc" data-i18n="links.loc_desc"></div></div><div class="link-arrow">→</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <span>Christian Estay Ojeda</span> · <span data-i18n="footer.role"></span></p>
+  <p style="margin-top:0.5rem;font-size:0.7rem;" data-i18n="footer.tagline"></p>
+</footer>
+
+<script>
+const i18n = {
+  es: {
+    nav: ['Inicio','Sobre mí','Servicios','CV','Títulos & Cert.','Blog','Links'],
+    "hero.eyebrow":"Bienvenido a bordo","hero.subtitle":"Capitán de Naves · Marine Specialist",
+    "hero.tagline":"Navegando los mares con experiencia, precisión y pasión. Especialista marino con una trayectoria forjada en alta mar.",
+    "hero.cta_svc":"Ver Servicios","hero.cta1":"Ver CV",
+    "about.eyebrow":"Quién soy","about.title":"Sobre mí",
+    "about.p1":"Soy <strong>Christian Estay Ojeda</strong>, Capitán de Naves y Marine Specialist con amplia experiencia en operaciones marítimas, navegación de altura y gestión de embarcaciones comerciales.",
+    "about.p2":"Mi carrera me ha llevado a recorrer océanos y puertos alrededor del mundo, adquiriendo una perspectiva única sobre la industria naval, la seguridad marítima y las operaciones offshore.",
+    "about.p3":"Combino la tradición del mar con un enfoque moderno en <strong>gestión técnica</strong> y <strong>consultoría marina</strong>, ofreciendo soluciones integrales a la industria marítima.",
+    "about.stat1":"Años en el mar","about.stat2":"Puertos visitados","about.stat3":"Seguridad primero","about.stat4":"Millas náuticas",
+    "svc.eyebrow":"Lo que ofrezco","svc.title":"Servicios",
+    "svc.s1title":"Consultoría Marítima","svc.s1desc":"Asesoría estratégica integral para armadores, operadores y empresas navieras. Análisis de operaciones, cumplimiento normativo y optimización de procesos bajo estándares IMO e ISM.",
+    "svc.s2title":"Inspección de Buques","svc.s2desc":"Inspecciones técnicas exhaustivas de embarcaciones comerciales. Evaluación del estado general, cumplimiento SOLAS y MARPOL, preparación para auditorías de Port State Control (PSC).",
+    "svc.s3title":"Gestión de Tripulación","svc.s3desc":"Planificación y gestión integral de dotaciones marítimas. Selección de personal cualificado, cumplimiento MLC 2006, coordinación de relevos y administración de documentación STCW.",
+    "svc.s4title":"Asesoría Offshore","svc.s4desc":"Consultoría especializada para operaciones en alta mar: plataformas FPSO, buques de posicionamiento dinámico (DP) y soporte a operaciones de perforación y producción offshore.",
+    "svc.s5title":"Capacitación & Entrenamiento","svc.s5desc":"Programas de formación marítima adaptados a equipos de puente y cubierta. Bridge Resource Management (BRM), seguridad a bordo, liderazgo náutico y preparación para exámenes STCW.",
+    "svc.tag_strategy":"Estrategia","svc.tag_psc":"PSC Prep","svc.tag_mlc":"MLC 2006","svc.tag_crewing":"Dotación","svc.tag_offshore":"Plataformas","svc.tag_safety":"Seguridad","svc.tag_leadership":"Liderazgo",
+    "cv.eyebrow":"Trayectoria","cv.title":"Curriculum Vitae","cv.present":"Presente",
+    "cv.role1":"Capitán de Naves","cv.company1":"Flota Comercial Internacional",
+    "cv.desc1":"Comando y gestión operacional de embarcaciones de gran tonelaje. Supervisión de tripulación, planificación de rutas y cumplimiento de normativa marítima internacional.",
+    "cv.tag1a":"Navegación de Altura","cv.tag1b":"Gestión de Tripulación",
+    "cv.company2":"Consultoría Marina — Offshore",
+    "cv.desc2":"Especialización en operaciones offshore, inspecciones técnicas de embarcaciones y asesoría en seguridad marítima para empresas del sector energético.",
+    "cv.tag2b":"Inspección Naval",
+    "cv.role3":"Primer Oficial de Puente","cv.company3":"Compañía Naviera del Pacífico",
+    "cv.desc3":"Responsable de navegación, guardia de puente y coordinación de operaciones de carga. Manejo de sistemas ECDIS, AIS y comunicaciones GMDSS.",
+    "cv.tag3c":"Operaciones de Carga",
+    "cv.role4":"Oficial de Marina Mercante","cv.company4":"Academia / Inicio de Carrera",
+    "cv.desc4":"Formación académica y primeras experiencias embarcado. Escalafón desde guardiamarina hasta oficial certificado, navegando en rutas del Pacífico Sur y Atlántico.",
+    "cv.tag4b":"Pacífico Sur","cv.tag4c":"Atlántico",
+    "tit.eyebrow":"Formación & Acreditaciones","tit.title":"Títulos & Certificaciones",
+    "tit.tab1":"Títulos Académicos","tit.tab2":"Certificaciones STCW","tit.tab3":"Cursos & Endorsements",
+    "tit.d1title":"Licenciatura en Náutica — Oficial de Marina Mercante",
+    "tit.d1year":"Titulado 2012","tit.d2title":"Capitán de Naves de Alto Bordo",
+    "tit.d2year":"Habilitado 2020","tit.d3year":"Especialización 2017",
+    "tit.badge_title":"Título","tit.badge_hab":"Habilitación","tit.badge_spec":"Especialidad",
+    "tit.valid":"Vigente","tit.done":"Completado",
+    "tit.ism_desc":"Gestión de seguridad y SMS a bordo","tit.brm_desc":"Liderazgo y trabajo en equipo en puente de mando",
+    "blog.eyebrow":"Reflexiones del mar",
+    "blog.cat1":"Navegación","blog.title1":"El arte de la navegación astronómica en la era digital","blog.exc1":"Por qué todo capitán debería dominar las estrellas, incluso con GPS a bordo.","blog.meta1":"Mayo 2025 · 5 min lectura",
+    "blog.cat2":"Seguridad Marítima","blog.title2":"Gestión de riesgos en operaciones offshore","blog.exc2":"Reflexiones sobre seguridad, protocolos y la cultura de prevención a bordo.","blog.meta2":"Marzo 2025 · 7 min lectura",
+    "blog.cat3":"Industria Naval","blog.title3":"El futuro de la marina mercante: descarbonización y nuevas rutas","blog.exc3":"Cómo el sector marítimo se prepara para los desafíos del siglo XXI.","blog.meta3":"Enero 2025 · 6 min lectura",
+    "links.eyebrow":"Conectemos","links.title":"Links & Perfiles",
+    "links.sec1":"Redes Profesionales","links.sec2":"Certificaciones","links.sec3":"Contacto",
+    "links.linkedin_desc":"Perfil profesional","links.marine_desc":"Trayectoria naval",
+    "links.stcw_name":"Certificados STCW","links.stcw_desc":"Documentación internacional","links.imo_desc":"Organización Marítima Internacional",
+    "links.email_name":"Email profesional","links.loc_name":"Ubicación","links.loc_desc":"Disponible para proyectos globales",
+    "footer.role":"Capitán de Naves · Marine Specialist","footer.tagline":"Navegando hacia nuevos horizontes ⚓"
+  },
+  en: {
+    nav: ['Home','About me','Services','CV','Degrees & Cert.','Blog','Links'],
+    "hero.eyebrow":"Welcome aboard","hero.subtitle":"Ship Captain · Marine Specialist",
+    "hero.tagline":"Navigating the seas with experience, precision and passion. A marine specialist with a career forged on the open ocean.",
+    "hero.cta_svc":"View Services","hero.cta1":"View CV",
+    "about.eyebrow":"Who I am","about.title":"About me",
+    "about.p1":"I am <strong>Christian Estay Ojeda</strong>, a Ship Captain and Marine Specialist with extensive experience in maritime operations, deep-sea navigation and commercial vessel management.",
+    "about.p2":"My career has taken me across oceans and ports around the world, giving me a unique perspective on the naval industry, maritime safety and offshore operations.",
+    "about.p3":"I combine maritime tradition with a modern approach to <strong>technical management</strong> and <strong>marine consultancy</strong>, delivering comprehensive solutions to the maritime industry.",
+    "about.stat1":"Years at sea","about.stat2":"Ports visited","about.stat3":"Safety first","about.stat4":"Nautical miles",
+    "svc.eyebrow":"What I offer","svc.title":"Services",
+    "svc.s1title":"Maritime Consultancy","svc.s1desc":"Strategic advisory for shipowners, operators and shipping companies. Operational analysis, regulatory compliance and process optimization under IMO and ISM standards.",
+    "svc.s2title":"Vessel Inspection","svc.s2desc":"Comprehensive technical inspections of commercial vessels. Assessment of general condition, SOLAS and MARPOL compliance, and preparation for Port State Control (PSC) audits.",
+    "svc.s3title":"Crew Management","svc.s3desc":"Full planning and management of maritime crews. Selection of qualified personnel, MLC 2006 compliance, crew change coordination and STCW documentation administration.",
+    "svc.s4title":"Offshore Advisory","svc.s4desc":"Specialized consultancy for offshore operations: FPSO vessels, dynamic positioning (DP) ships and support for drilling and offshore production operations.",
+    "svc.s5title":"Training & Development","svc.s5desc":"Maritime training programs tailored for bridge and deck teams. Bridge Resource Management (BRM), onboard safety, nautical leadership and STCW exam preparation.",
+    "svc.tag_strategy":"Strategy","svc.tag_psc":"PSC Prep","svc.tag_mlc":"MLC 2006","svc.tag_crewing":"Crewing","svc.tag_offshore":"Platforms","svc.tag_safety":"Safety","svc.tag_leadership":"Leadership",
+    "cv.eyebrow":"Career","cv.title":"Curriculum Vitae","cv.present":"Present",
+    "cv.role1":"Ship Captain","cv.company1":"International Commercial Fleet",
+    "cv.desc1":"Command and operational management of large-tonnage vessels. Crew supervision, route planning and compliance with international maritime regulations.",
+    "cv.tag1a":"Deep-Sea Navigation","cv.tag1b":"Crew Management",
+    "cv.company2":"Marine Consultancy — Offshore",
+    "cv.desc2":"Specialization in offshore operations, technical vessel inspections and maritime safety advisory for companies in the energy sector.",
+    "cv.tag2b":"Naval Inspection",
+    "cv.role3":"Chief Officer","cv.company3":"Pacific Shipping Company",
+    "cv.desc3":"Responsible for navigation, bridge watch and coordination of cargo operations. Handling of ECDIS, AIS systems and GMDSS communications.",
+    "cv.tag3c":"Cargo Operations",
+    "cv.role4":"Merchant Marine Officer","cv.company4":"Academy / Early Career",
+    "cv.desc4":"Academic training and first seafaring experience. Rose through the ranks from cadet to certified officer, sailing South Pacific and Atlantic routes.",
+    "cv.tag4b":"South Pacific","cv.tag4c":"Atlantic",
+    "tit.eyebrow":"Education & Accreditations","tit.title":"Degrees & Certifications",
+    "tit.tab1":"Academic Degrees","tit.tab2":"STCW Certifications","tit.tab3":"Courses & Endorsements",
+    "tit.d1title":"Bachelor of Nautical Science — Merchant Marine Officer",
+    "tit.d1year":"Graduated 2012","tit.d2title":"Master Mariner — Deep-Sea Captain",
+    "tit.d2year":"Licensed 2020","tit.d3year":"Specialization 2017",
+    "tit.badge_title":"Degree","tit.badge_hab":"License","tit.badge_spec":"Specialty",
+    "tit.valid":"Valid","tit.done":"Completed",
+    "tit.ism_desc":"Safety management and SMS onboard","tit.brm_desc":"Leadership and teamwork on the bridge",
+    "blog.eyebrow":"Reflections from the sea",
+    "blog.cat1":"Navigation","blog.title1":"The art of celestial navigation in the digital age","blog.exc1":"Why every captain should master the stars, even with GPS on board.","blog.meta1":"May 2025 · 5 min read",
+    "blog.cat2":"Maritime Safety","blog.title2":"Risk management in offshore operations","blog.exc2":"Reflections on safety, protocols and the culture of prevention on board.","blog.meta2":"March 2025 · 7 min read",
+    "blog.cat3":"Naval Industry","blog.title3":"The future of merchant shipping: decarbonization and new routes","blog.exc3":"How the maritime sector is preparing for the challenges of the 21st century.","blog.meta3":"January 2025 · 6 min read",
+    "links.eyebrow":"Let's connect","links.title":"Links & Profiles",
+    "links.sec1":"Professional Networks","links.sec2":"Certifications","links.sec3":"Contact",
+    "links.linkedin_desc":"Professional profile","links.marine_desc":"Maritime track record",
+    "links.stcw_name":"STCW Certificates","links.stcw_desc":"International documentation","links.imo_desc":"International Maritime Organization",
+    "links.email_name":"Professional email","links.loc_name":"Location","links.loc_desc":"Available for global projects",
+    "footer.role":"Ship Captain · Marine Specialist","footer.tagline":"Navigating toward new horizons ⚓"
+  },
+  pt: {
+    nav: ['Início','Sobre mim','Serviços','CV','Títulos & Cert.','Blog','Links'],
+    "hero.eyebrow":"Bem-vindo a bordo","hero.subtitle":"Capitão de Navios · Especialista Marítimo",
+    "hero.tagline":"Navegando os mares com experiência, precisão e paixão. Especialista marítimo com uma trajetória forjada em alto mar.",
+    "hero.cta_svc":"Ver Serviços","hero.cta1":"Ver CV",
+    "about.eyebrow":"Quem sou","about.title":"Sobre mim",
+    "about.p1":"Sou <strong>Christian Estay Ojeda</strong>, Capitão de Navios e Especialista Marítimo com vasta experiência em operações marítimas, navegação de longo curso e gestão de embarcações comerciais.",
+    "about.p2":"Minha carreira me levou a percorrer oceanos e portos ao redor do mundo, adquirindo uma perspectiva única sobre a indústria naval, a segurança marítima e as operações offshore.",
+    "about.p3":"Combino a tradição do mar com uma abordagem moderna em <strong>gestão técnica</strong> e <strong>consultoria marítima</strong>, oferecendo soluções integrais à indústria marítima.",
+    "about.stat1":"Anos no mar","about.stat2":"Portos visitados","about.stat3":"Segurança primeiro","about.stat4":"Milhas náuticas",
+    "svc.eyebrow":"O que ofereço","svc.title":"Serviços",
+    "svc.s1title":"Consultoria Marítima","svc.s1desc":"Assessoria estratégica para armadores, operadores e empresas de navegação. Análise operacional, conformidade regulatória e otimização de processos segundo normas IMO e ISM.",
+    "svc.s2title":"Inspeção de Embarcações","svc.s2desc":"Inspeções técnicas completas de embarcações comerciais. Avaliação geral, conformidade SOLAS e MARPOL e preparação para auditorias de Port State Control (PSC).",
+    "svc.s3title":"Gestão de Tripulação","svc.s3desc":"Planejamento e gestão integral de tripulações marítimas. Seleção de pessoal qualificado, conformidade MLC 2006, coordenação de trocas e administração de documentação STCW.",
+    "svc.s4title":"Assessoria Offshore","svc.s4desc":"Consultoria especializada em operações offshore: plataformas FPSO, embarcações de posicionamento dinâmico (DP) e suporte a operações de perfuração e produção no mar.",
+    "svc.s5title":"Capacitação & Treinamento","svc.s5desc":"Programas de formação marítima para equipes de ponte e convés. Bridge Resource Management (BRM), segurança a bordo, liderança náutica e preparação para exames STCW.",
+    "svc.tag_strategy":"Estratégia","svc.tag_psc":"PSC Prep","svc.tag_mlc":"MLC 2006","svc.tag_crewing":"Tripulação","svc.tag_offshore":"Plataformas","svc.tag_safety":"Segurança","svc.tag_leadership":"Liderança",
+    "cv.eyebrow":"Trajetória","cv.title":"Curriculum Vitae","cv.present":"Presente",
+    "cv.role1":"Capitão de Navios","cv.company1":"Frota Comercial Internacional",
+    "cv.desc1":"Comando e gestão operacional de embarcações de grande tonelagem. Supervisão de tripulação, planejamento de rotas e cumprimento das normas marítimas internacionais.",
+    "cv.tag1a":"Navegação de Longo Curso","cv.tag1b":"Gestão de Tripulação",
+    "cv.company2":"Consultoria Marítima — Offshore",
+    "cv.desc2":"Especialização em operações offshore, inspeções técnicas de embarcações e assessoria em segurança marítima para empresas do setor energético.",
+    "cv.tag2b":"Inspeção Naval",
+    "cv.role3":"Primeiro Oficial de Ponte","cv.company3":"Companhia Naveira do Pacífico",
+    "cv.desc3":"Responsável pela navegação, guarda de ponte e coordenação das operações de carga. Manuseio dos sistemas ECDIS, AIS e comunicações GMDSS.",
+    "cv.tag3c":"Operações de Carga",
+    "cv.role4":"Oficial da Marinha Mercante","cv.company4":"Academia / Início de Carreira",
+    "cv.desc4":"Formação acadêmica e primeiras experiências embarcado. Carreira desde guarda-marinha até oficial certificado, navegando em rotas do Pacífico Sul e Atlântico.",
+    "cv.tag4b":"Pacífico Sul","cv.tag4c":"Atlântico",
+    "tit.eyebrow":"Formação & Acreditações","tit.title":"Títulos & Certificações",
+    "tit.tab1":"Títulos Acadêmicos","tit.tab2":"Certificações STCW","tit.tab3":"Cursos & Endorsements",
+    "tit.d1title":"Licenciatura em Náutica — Oficial da Marinha Mercante",
+    "tit.d1year":"Formado em 2012","tit.d2title":"Capitão de Navios de Alto Bordo",
+    "tit.d2year":"Habilitado em 2020","tit.d3year":"Especialização 2017",
+    "tit.badge_title":"Título","tit.badge_hab":"Habilitação","tit.badge_spec":"Especialidade",
+    "tit.valid":"Válido","tit.done":"Concluído",
+    "tit.ism_desc":"Gestão de segurança e SMS a bordo","tit.brm_desc":"Liderança e trabalho em equipe na ponte de comando",
+    "blog.eyebrow":"Reflexões do mar",
+    "blog.cat1":"Navegação","blog.title1":"A arte da navegação astronômica na era digital","blog.exc1":"Por que todo capitão deveria dominar as estrelas, mesmo com GPS a bordo.","blog.meta1":"Maio 2025 · 5 min leitura",
+    "blog.cat2":"Segurança Marítima","blog.title2":"Gestão de riscos em operações offshore","blog.exc2":"Reflexões sobre segurança, protocolos e a cultura de prevenção a bordo.","blog.meta2":"Março 2025 · 7 min leitura",
+    "blog.cat3":"Indústria Naval","blog.title3":"O futuro da marinha mercante: descarbonização e novas rotas","blog.exc3":"Como o setor marítimo se prepara para os desafios do século XXI.","blog.meta3":"Janeiro 2025 · 6 min leitura",
+    "links.eyebrow":"Vamos nos conectar","links.title":"Links & Perfis",
+    "links.sec1":"Redes Profissionais","links.sec2":"Certificações","links.sec3":"Contato",
+    "links.linkedin_desc":"Perfil profissional","links.marine_desc":"Trajetória naval",
+    "links.stcw_name":"Certificados STCW","links.stcw_desc":"Documentação internacional","links.imo_desc":"Organização Marítima Internacional",
+    "links.email_name":"E-mail profissional","links.loc_name":"Localização","links.loc_desc":"Disponível para projetos globais",
+    "footer.role":"Capitão de Navios · Especialista Marítimo","footer.tagline":"Navegando rumo a novos horizontes ⚓"
+  }
+};
+
+const sections = ['home','about','servicios','cv','titulos','blog','links'];
+let currentLang = 'es';
+let currentSection = 'home';
+
+function buildNav() {
+  const list = document.getElementById('nav-links-list');
+  list.innerHTML = '';
+  i18n[currentLang].nav.forEach((label, idx) => {
+    const id = sections[idx];
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.textContent = label;
+    a.href = '#';
+    a.id = 'nav-' + id;
+    a.onclick = (e) => { e.preventDefault(); showSection(id); };
+    if (id === currentSection) a.classList.add('active');
+    li.appendChild(a);
+    list.appendChild(li);
+  });
+}
+
+function applyTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (i18n[currentLang][key] !== undefined) el.innerHTML = i18n[currentLang][key];
+  });
+  document.documentElement.lang = currentLang;
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  applyTranslations();
+  buildNav();
+}
+
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('#nav-links-list a').forEach(a => a.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const navEl = document.getElementById('nav-' + id);
+  if (navEl) navEl.classList.add('active');
+  currentSection = id;
+  window.scrollTo(0, 0);
+}
+
+function switchTab(tabId, btn) {
+  const inner = btn.closest('.section-inner');
+  inner.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  inner.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  btn.classList.add('active');
+}
+
+// Stars
+const sc = document.getElementById('stars');
+for (let i = 0; i < 80; i++) {
+  const s = document.createElement('div');
+  s.className = 'star';
+  s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*3}s;animation-duration:${2+Math.random()*3}s;width:${Math.random()>.7?3:2}px;height:${Math.random()>.7?3:2}px`;
+  sc.appendChild(s);
+}
+
+buildNav();
+applyTranslations();
+</script>
+</body>
+</html>
