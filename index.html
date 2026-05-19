@@ -385,19 +385,44 @@
     </div>
     <div id="titulos-tab" class="tab-panel active">
       <div class="degree-card">
-        <div class="degree-icon">🎓</div>
+        <div class="degree-icon">⚓</div>
         <div class="degree-body"><div class="degree-title" data-i18n="tit.d1title"></div><div class="degree-institution">Academia Politécnica Naval / Escuela de Ciencias del Mar</div><div class="degree-year" data-i18n="tit.d1year"></div></div>
-        <div class="degree-badge" data-i18n="tit.badge_title"></div>
+        <a class="download-btn" href="files/Bachelor_Nautica.pdf" download>⬇ PDF</a>
       </div>
       <div class="degree-card">
         <div class="degree-icon">⚓</div>
         <div class="degree-body"><div class="degree-title" data-i18n="tit.d2title"></div><div class="degree-institution">DIRECTEMAR — Dirección General del Territorio Marítimo</div><div class="degree-year" data-i18n="tit.d2year"></div></div>
-        <div class="degree-badge" data-i18n="tit.badge_hab"></div>
+        <a class="download-btn" href="files/Titulos de Marino.pdf" download>⬇ PDF</a>
       </div>
       <div class="degree-card">
         <div class="degree-icon">🌊</div>
         <div class="degree-body"><div class="degree-title">Marine Specialist — Offshore Operations</div><div class="degree-institution">International Maritime Organization (IMO)</div><div class="degree-year" data-i18n="tit.d3year"></div></div>
         <div class="degree-badge" data-i18n="tit.badge_spec"></div>
+      </div>
+      <div class="degree-card">
+        <div class="degree-icon">🎓</div>
+        <div class="degree-body"><div class="degree-title">Bachelor of Arts</div><div class="degree-institution" data-i18n="tit.ba_inst"></div><div class="degree-year" data-i18n="tit.ba_year"></div></div>
+        <a class="download-btn" href="files/B of Arts.pdf" download>⬇ PDF</a>
+      </div>
+      <div class="degree-card">
+        <div class="degree-icon">🎓</div>
+        <div class="degree-body"><div class="degree-title">Magister en Logística</div><div class="degree-institution" data-i18n="tit.mlog_inst"></div><div class="degree-year" data-i18n="tit.mlog_year"></div></div>
+        <a class="download-btn" href="files/Magister Logistica.pdf" download>⬇ PDF</a>
+      </div>
+      <div class="degree-card">
+        <div class="degree-icon">🎓</div>
+        <div class="degree-body"><div class="degree-title">MBA — Master of Business Administration</div><div class="degree-institution" data-i18n="tit.mba_inst"></div><div class="degree-year" data-i18n="tit.mba_year"></div></div>
+        <a class="download-btn" href="files/MBA.pdf" download>⬇ PDF</a>
+      </div>
+      <div class="degree-card">
+        <div class="degree-icon">🎓</div>
+        <div class="degree-body"><div class="degree-title">MPhil — Master of Philosophy</div><div class="degree-institution" data-i18n="tit.mphil_inst"></div><div class="degree-year" data-i18n="tit.mphil_year"></div></div>
+        <a class="download-btn" href="files/MPhil_Christian Estay.pdf" download>⬇ PDF</a>
+      </div>
+      <div class="degree-card">
+        <div class="degree-icon">🏛</div>
+        <div class="degree-body"><div class="degree-title">DBA — Doctorate in Business Administration</div><div class="degree-institution" data-i18n="tit.dba_inst"></div><div class="degree-year" data-i18n="tit.dba_year"></div></div>
+        <a class="download-btn" href="files/DBA.pdf" download>⬇ PDF</a>
       </div>
     </div>
     <div id="cert-tab" class="tab-panel">
@@ -553,6 +578,11 @@ const i18n = {
     "tit.valid":"Vigente","tit.done":"Completado",
     "tit.ism_desc":"Gestión de seguridad y SMS a bordo","tit.brm_desc":"Liderazgo y trabajo en equipo en puente de mando",
     "tit.docs_marine":"Títulos de Marina","tit.doc_marino":"Título de Marino — Capitán de Alta Mar","tit.docs_academic":"Grados Académicos","tit.docs_degree":"Grado Académico","tit.docs_surveyor":"Surveyor","tit.docs_cert":"Certificado Profesional","tit.docs_mit":"MIT — Cursos Especializados","tit.docs_cv":"Curriculum Vitae","tit.docs_cv_desc":"Versión completa actualizada",
+    "tit.ba_inst":"Universidad","tit.ba_year":"Bachelor of Arts",
+    "tit.mlog_inst":"Universidad","tit.mlog_year":"Magíster en Logística",
+    "tit.mba_inst":"Universidad","tit.mba_year":"Master of Business Administration",
+    "tit.mphil_inst":"Universidad","tit.mphil_year":"Master of Philosophy",
+    "tit.dba_inst":"Universidad","tit.dba_year":"Doctorado en Administración de Empresas",
     "blog.eyebrow":"Reflexiones del mar",
     "blog.cat1":"Navegación","blog.title1":"El arte de la navegación astronómica en la era digital","blog.exc1":"Por qué todo capitán debería dominar las estrellas, incluso con GPS a bordo.","blog.meta1":"Mayo 2025 · 5 min lectura",
     "blog.cat2":"Seguridad Marítima","blog.title2":"Gestión de riesgos en operaciones offshore","blog.exc2":"Reflexiones sobre seguridad, protocolos y la cultura de prevención a bordo.","blog.meta2":"Marzo 2025 · 7 min lectura",
@@ -603,6 +633,11 @@ const i18n = {
     "tit.valid":"Valid","tit.done":"Completed",
     "tit.ism_desc":"Safety management and SMS onboard","tit.brm_desc":"Leadership and teamwork on the bridge",
     "tit.docs_marine":"Marine Titles","tit.doc_marino":"Merchant Marine Title — Master Mariner","tit.docs_academic":"Academic Degrees","tit.docs_degree":"Academic Degree","tit.docs_surveyor":"Surveyor","tit.docs_cert":"Professional Certificate","tit.docs_mit":"MIT — Specialized Courses","tit.docs_cv":"Curriculum Vitae","tit.docs_cv_desc":"Full updated version",
+    "tit.ba_inst":"University","tit.ba_year":"Bachelor of Arts",
+    "tit.mlog_inst":"University","tit.mlog_year":"Master in Logistics",
+    "tit.mba_inst":"University","tit.mba_year":"Master of Business Administration",
+    "tit.mphil_inst":"University","tit.mphil_year":"Master of Philosophy",
+    "tit.dba_inst":"University","tit.dba_year":"Doctorate in Business Administration",
     "blog.eyebrow":"Reflections from the sea",
     "blog.cat1":"Navigation","blog.title1":"The art of celestial navigation in the digital age","blog.exc1":"Why every captain should master the stars, even with GPS on board.","blog.meta1":"May 2025 · 5 min read",
     "blog.cat2":"Maritime Safety","blog.title2":"Risk management in offshore operations","blog.exc2":"Reflections on safety, protocols and the culture of prevention on board.","blog.meta2":"March 2025 · 7 min read",
@@ -653,6 +688,11 @@ const i18n = {
     "tit.valid":"Válido","tit.done":"Concluído",
     "tit.ism_desc":"Gestão de segurança e SMS a bordo","tit.brm_desc":"Liderança e trabalho em equipe na ponte de comando",
     "tit.docs_marine":"Títulos de Marinha","tit.doc_marino":"Título de Marinheiro — Capitão de Longo Curso","tit.docs_academic":"Graus Acadêmicos","tit.docs_degree":"Grau Acadêmico","tit.docs_surveyor":"Surveyor","tit.docs_cert":"Certificado Profissional","tit.docs_mit":"MIT — Cursos Especializados","tit.docs_cv":"Curriculum Vitae","tit.docs_cv_desc":"Versão completa atualizada",
+    "tit.ba_inst":"Universidade","tit.ba_year":"Bacharel em Artes",
+    "tit.mlog_inst":"Universidade","tit.mlog_year":"Mestrado em Logística",
+    "tit.mba_inst":"Universidade","tit.mba_year":"Master of Business Administration",
+    "tit.mphil_inst":"Universidade","tit.mphil_year":"Master of Philosophy",
+    "tit.dba_inst":"Universidade","tit.dba_year":"Doutorado em Administração de Empresas",
     "blog.eyebrow":"Reflexões do mar",
     "blog.cat1":"Navegação","blog.title1":"A arte da navegação astronômica na era digital","blog.exc1":"Por que todo capitão deveria dominar as estrelas, mesmo com GPS a bordo.","blog.meta1":"Maio 2025 · 5 min leitura",
     "blog.cat2":"Segurança Marítima","blog.title2":"Gestão de riscos em operações offshore","blog.exc2":"Reflexões sobre segurança, protocolos e a cultura de prevenção a bordo.","blog.meta2":"Março 2025 · 7 min leitura",
